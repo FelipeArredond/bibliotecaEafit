@@ -1,0 +1,91 @@
+body {
+	background: #f1f1f1;
+	/*font-family: 'Open Sans', sans-serif;*/
+}
+
+.contenedor {
+	/*min-width: ;*/
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	margin: 8% 31%;
+
+}
+
+.form_sesion {
+	/*max-width: ;*/
+	margin: 8% 31%;
+	background: rgb(240, 240, 240);
+	border-radius: 5px;
+	padding: 25px 40px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.form_sesion div {
+	margin-bottom: 10px;
+}
+
+.form_sesion input{
+	font-family: 'Open Sans', sans-serif;
+	width: 96%;
+	border-radius: 5px;
+	border: 2px solid #e2e2e2;
+	font-size: 18px;
+	padding: 10px;
+	margin-bottom: 5px;
+	color: #1f1f1f;
+}
+
+.form_sesion input:focus,
+.form_sesion select:focus {
+	outline: none;
+	border: 0.1rem solid #0085FF;
+}
+
+.form_sesion .error {
+	color: #e92b2d;
+	font-weight: 600;
+	font-size: 12px;
+}
+
+
+.btn_ingresar[type="submit"] {
+	display: block;
+    margin: 15px 0 0 74%;
+	background: #0085FF;
+	font-family: 'Open Sans', sans-serif;
+	border: none;
+	cursor: pointer;
+	width: 20%;
+	padding: 10px;
+	border-radius: 5px;
+	color: floralwhite;
+	font-size: 16px;
+	transition: .3s ease all;
+}
+
+.btn_ingresar[type="submit"]:hover {
+	background: #0051ff;
+}
+
+.down a{
+	display: block;
+	margin-left: 8%;
+	padding-top: 5px;
+}
+
+.down a:link{ /*Color de texto de url antes de dar click*/
+    color: black;
+    text-decoration: none;
+}
+
+.down a:hover{
+	color: #0051ff;
+}
+
+.down a:active{
+	color: #0051ff;
+	text-decoration: underline;
+}
+
+
