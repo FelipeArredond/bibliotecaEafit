@@ -1,7 +1,42 @@
 import { Table } from "react-bootstrap"
-import ListItem from "./ListItem"
+import { useEffect, useState } from "react"
 
 export default function Libros(){
+     
+    const [books, setBooks] = useState([])
+
+    const loadBook = async () => {
+        const response = await fetch('http://localhost:4000/libros')
+        const data = await response.json()
+        setBooks(data)
+    }
+
+    useEffect(() =>{
+        loadBook()
+    }, [])
+
+    const booksMap =  books.map(book =>{
+        return(
+            <tr>
+                <th scope="row">
+                    {book.id_libro}
+                </th>
+                <td>
+                    {book.titulo}
+                </td>
+                <td>
+                    {book.autor}
+                </td>
+                <td>
+                    {book.editorial}
+                </td>
+                <td>
+                    {book.area}
+                </td>
+            </tr>
+        );
+    })   
+
     return(
         <div>
             <div>
@@ -9,14 +44,13 @@ export default function Libros(){
             </div>
             <Table
                 bordered
-                dark
                 hover
                 responsive
                 >
                 <thead>
                     <tr>
                     <th>
-                        #
+                        ID
                     </th>
                     <th>
                         Titulo
@@ -25,32 +59,15 @@ export default function Libros(){
                         Autor
                     </th>
                     <th>
-                        Edicion
+                        Editorial
                     </th>
                     <th>
-                        Disponibilidad
+                        Area
                     </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <ListItem tittle={'100 años de soledad'}
-                    number={'1'}
-                    autor={'gabo'}
-                    edicion={'la disquera'}
-                    disponibilidad={'ninguna'}
-                    ></ListItem>
-                    <ListItem tittle={'100 años de soledad'}
-                    number={'2'}
-                    autor={'gabo'}
-                    edicion={'la disquera'}
-                    disponibilidad={'ninguna'}
-                    ></ListItem>
-                    <ListItem tittle={'100 años de soledad'}
-                    number={'3'}
-                    autor={'gabo'}
-                    edicion={'la disquera'}
-                    disponibilidad={'ninguna'}
-                    ></ListItem>
+                    {booksMap}
                 </tbody>
             </Table>
         </div>
