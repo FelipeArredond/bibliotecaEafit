@@ -8,8 +8,6 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css'
 const rootElement = document.getElementById('root')
 const root = ReactDOMClient.createRoot(rootElement);
 root.render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>,
 
 );

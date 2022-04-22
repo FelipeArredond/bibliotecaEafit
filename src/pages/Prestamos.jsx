@@ -1,5 +1,5 @@
-import { Form, FormGroup, FormLabel, FormText, FormControl ,Button} from "react-bootstrap"
-import { useState, useEffect } from "react"
+import { Form, FormGroup, FormLabel, FormControl ,Button} from "react-bootstrap"
+import Libros from "./Libros"
 
 export default function Prestamos(){
 
@@ -17,6 +17,7 @@ export default function Prestamos(){
                 </Button>
                 </FormGroup>    
             </Form>
+            <Libros />
         </div>
     )
 }

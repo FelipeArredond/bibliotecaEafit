@@ -1,37 +1,40 @@
 import { Table } from "react-bootstrap"
 import { useEffect, useState } from "react"
 
-export default function Libros(){
+export default function Libros(props){
      
     const [books, setBooks] = useState([])
 
+    var num = ''
+
     const loadBook = async () => {
-        const response = await fetch('http://localhost:4000/libros')
+        const response = await fetch(`http://localhost:4000/libros/${num}`)
         const data = await response.json()
+        console.log(data)
         setBooks(data)
     }
 
     useEffect(() =>{
         loadBook()
     }, [])
-
-    const booksMap =  books.map(book =>{
+    
+    const booksMapAll =  books.map(book => {
         return(
             <tr>
                 <th scope="row">
-                    {book.id_libro}
+                    {book.idlibro}
                 </th>
                 <td>
-                    {book.titulo}
+                    {book.titulolibro}
                 </td>
                 <td>
-                    {book.autor}
+                    {book.nombreautor}
                 </td>
                 <td>
-                    {book.editorial}
+                    {book.editoriallibro}
                 </td>
                 <td>
-                    {book.area}
+                    {book.arealibro}
                 </td>
             </tr>
         );
@@ -67,7 +70,7 @@ export default function Libros(){
                     </tr>
                 </thead>
                 <tbody>
-                    {booksMap}
+                    {booksMapAll}
                 </tbody>
             </Table>
         </div>
