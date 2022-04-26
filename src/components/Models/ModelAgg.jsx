@@ -7,8 +7,16 @@ export default function ModelAgg(props) {
 
     const [mostrarModalAgg, setMostrarModalAgg] = useState(false)
 
-    function agregar(rowOfLibs) {
-        const newLibAgg = [...props.existingLib, rowOfLibs]
+    const addLibros = async (valores) => {
+        const res = await fetch('http://localhost:3032/libro', {
+            method: "POST",
+            body: JSON.stringify(valores), //Convierte el objeto tarea en un string
+            headers: { "Content-Type": "application/json" },
+        })
+        const data = await res.json()
+        console.log(data)
+
+        const newLibAgg = [...props.existingLib, valores]
         props.onChange(newLibAgg)
     }
 
@@ -25,17 +33,11 @@ export default function ModelAgg(props) {
                 }}
 
                     onSubmit={async valores => {
+                        //Boton desabilitado por un segundo (Evitar no mandar dos veces lo mismo)
                         await new Promise(r => setTimeout(r, 1000))
                         setMostrarModalAgg(!mostrarModalAgg)//Cerrar Model haciendolo false
-                        agregar(valores)
-
-                        const res = await fetch('http://localhost:3032/libro', {
-                            method: "POST",
-                            body: JSON.stringify(valores), //Convierte el objeto tarea en un string
-                            headers: { "Content-Type": "application/json" },
-                        })
-                        const data = await res.json()
-                        console.log(data)
+                        
+                        addLibros(valores)
 
                     }}
 

@@ -7,50 +7,56 @@ export default function ModelMody(props) {
 
     const [mostrarModalMody, setMostrarModalMody] = useState(false)
 
-    function modificar(rowOfLibs) {
+    const modyLibros = async (valueRowOfbook) => {
+        const respuesta = await fetch(`http://localhost:3032/libro/${valueRowOfbook.id_libro}`, {
+            method: "PUT",
+            body: JSON.stringify(valueRowOfbook), //Convierte el objeto tarea en un string
+            headers: { "Content-Type": "application/json" },
+        })
+        console.log(respuesta)
+
+
         const newInvModificado = props.existingLib.map(libro => (
-            libro.id === rowOfLibs.id ? rowOfLibs : libro
+            libro.id_libro === valueRowOfbook.id_libro ? valueRowOfbook : libro
         ))
         props.onChange(newInvModificado)
-
     }
 
-
+    /**Destructuring */
     const { modelo } = props
-
     return (
         <div>
             <Btn className={props.className} onClick={() => setMostrarModalMody(!mostrarModalMody)} any='Mody'></Btn>
             <div>
                 {mostrarModalMody ? <GlobalModal title='Modi'>
                     <Formik initialValues={{
-                        id: modelo.id,
+                        id_libro: modelo.id_libro,
                         titulo: modelo.titulo,
-                        autor: modelo.autor,
-                        edicion: modelo.edicion,
-                        disponibilidad: modelo.disponibilidad
+                        editorial: modelo.editorial,
+                        area: modelo.area
                     }}
 
                         onSubmit={async valores => {
                             await new Promise(r => setTimeout(r, 1000))
                             setMostrarModalMody(!mostrarModalMody)//Cerrar Model haciendolo false
-                            modificar(valores) //Pasarle los valores de la fila a modyfyProInv(function)
+                            modyLibros(valores) //Pasarle los valores de la fila a modyfyProInv(function)
                             console.log(valores)
+
 
                         }}
 
                     ><Form>
                             <div>
+                                <Field name='id_libro' type='text' />
+                            </div>
+                            <div>
                                 <Field name='titulo' type='text' />
                             </div>
                             <div>
-                                <Field name='autor' type='text' />
+                                <Field name='editorial' type='number' />
                             </div>
                             <div>
-                                <Field name='edicion' type='number' />
-                            </div>
-                            <div>
-                                <Field name='disponibilidad' type='number' />
+                                <Field name='area' type='number' />
                             </div>
                             <div className="row">
                                 <div>
