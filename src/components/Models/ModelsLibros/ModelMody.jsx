@@ -1,6 +1,6 @@
-import Btn from '../Btn';
+import Btn from "../../Btn";
 import { useState } from "react"
-import GlobalModal from "./GlobalModal";
+import GlobalModal from "../GlobalModal";
 import { Form, Formik, Field } from "formik"
 
 export default function ModelMody(props) {
@@ -21,12 +21,11 @@ export default function ModelMody(props) {
         ))
         props.onChange(newInvModificado)
     }
-
     /**Destructuring */
     const { modelo } = props
     return (
         <div>
-            <Btn className={props.className} onClick={() => setMostrarModalMody(!mostrarModalMody)} any='Mody'></Btn>
+            <Btn className='btn btn-primary' onClick={() => setMostrarModalMody(!mostrarModalMody)} any='Mody'></Btn>
             <div>
                 {mostrarModalMody ? <GlobalModal title='Modi'>
                     <Formik initialValues={{
@@ -35,16 +34,12 @@ export default function ModelMody(props) {
                         editorial: modelo.editorial,
                         area: modelo.area
                     }}
-
                         onSubmit={async valores => {
                             await new Promise(r => setTimeout(r, 1000))
                             setMostrarModalMody(!mostrarModalMody)//Cerrar Model haciendolo false
                             modyLibros(valores) //Pasarle los valores de la fila a modyfyProInv(function)
                             console.log(valores)
-
-
                         }}
-
                     ><Form>
                             <div>
                                 <Field name='id_libro' type='text' />

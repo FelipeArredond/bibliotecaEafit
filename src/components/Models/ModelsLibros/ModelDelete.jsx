@@ -1,6 +1,6 @@
-import Btn from '../Btn';
+import Btn from '../../Btn';
 import { useState } from "react"
-import GlobalModal from "./GlobalModal";
+import GlobalModal from "../GlobalModal";
 
 export default function ModelDelete(props) {
 
@@ -22,7 +22,7 @@ export default function ModelDelete(props) {
 
     return (
         <div>
-            <Btn className={props.className} onClick={() => setMostrarModalDelete(!mostrarModalDelete)} any='Delete'></Btn>
+            <Btn className='btn btn-danger' onClick={() => setMostrarModalDelete(!mostrarModalDelete)} any='Delete'></Btn>
             <div>
                 {mostrarModalDelete ? <GlobalModal title='Delete'>
                     <p>Seguro que deseas eliminar..</p>

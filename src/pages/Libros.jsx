@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-
+ 
 import './css/libros.css'
 
-import ModelAgg from "../components/Models/ModelAgg"
-import ModelDelete from "../components/Models/ModelDelete"
-import ModelMody from "../components/Models/ModelMody"
+import ModelAgg from "../components/Models/ModelsLibros/ModelAgg"
+import ModelDelete from "../components/Models/ModelsLibros/ModelDelete"
+import ModelMody from "../components/Models/ModelsLibros/ModelMody"
 
 export default function Libros() {
 
@@ -24,7 +24,7 @@ export default function Libros() {
     /**Destructuring */
     return (
         <div>
-            <h2>Inventario</h2>
+            <h2>Libros</h2>
 
             <ModelAgg className='btn btn-success' existingLib={stateLibro} onChange={(libro) => setStateLibro(libro)} />
 
@@ -36,8 +36,6 @@ export default function Libros() {
                             <th scope="col">Titulo</th>
                             <th scope="col">Editorial</th>
                             <th scope="col">Area</th>
-                            <th scope="col">Autor</th>
-                            <th scope="col">Nacionalidad</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,15 +45,11 @@ export default function Libros() {
                                 <td>{libro.titulo}</td>
                                 <td>{libro.editorial}</td>
                                 <td>{libro.area}</td>
-                                <td>{libro.nombre}</td>
-                                <td>{libro.nacionalidad}</td>
-                                <td><ModelMody className='btn btn-primary'
-                                    modelo={libro}
+                                <td><ModelMody modelo={libro}
                                     existingLib={stateLibro}
                                     onChange={(libro) => setStateLibro(libro)}
                                 /></td>
-                                <td><ModelDelete className='btn btn-danger'
-                                    modelo={libro}
+                                <td><ModelDelete modelo={libro}
                                     existingLib={stateLibro}
                                     onChange={(libro) => setStateLibro(libro)} />
                                 </td>

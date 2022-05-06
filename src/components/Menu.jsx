@@ -26,6 +26,9 @@ export default function Menu() {
                             <Link to="/prestamos" className="nav-link">Prestamos</Link>
                         </li>
                         <li className="sesion_close nav-item">
+                            <Link to="/multas" className="nav-link">Multas</Link>
+                        </li>
+                        <li className="sesion_close nav-item">
                             <Link to="/inicioSesion" className="nav-link">Cerrar sesion</Link>
                         </li>
                     </ul>

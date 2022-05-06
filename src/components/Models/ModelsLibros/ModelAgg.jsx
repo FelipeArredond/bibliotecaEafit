@@ -1,6 +1,6 @@
 import { useState } from "react"
-import Btn from '../Btn';
-import GlobalModal from "./GlobalModal";
+import Btn from '../../Btn';
+import GlobalModal from "../GlobalModal";
 import { Form, Formik, Field } from "formik"
 
 export default function ModelAgg(props) {
@@ -29,14 +29,15 @@ export default function ModelAgg(props) {
                     id_libro: 19,
                     titulo: "MyFirtsBook",
                     editorial: "2",
-                    area: "12"
+                    area: "12",
+                    //autor: "NoName"
                 }}
 
                     onSubmit={async valores => {
                         //Boton desabilitado por un segundo (Evitar no mandar dos veces lo mismo)
                         await new Promise(r => setTimeout(r, 1000))
                         setMostrarModalAgg(!mostrarModalAgg)//Cerrar Model haciendolo false
-                        
+
                         addLibros(valores)
 
                     }}
@@ -51,9 +52,9 @@ export default function ModelAgg(props) {
                         <div>
                             <Field name='editorial' type='text' placeholder='Editorial' />
                         </div>
-                        <div>
-                            <Field name='area' type='text' placeholder='Area' />
-                        </div>
+                        {/* <div>
+                            <Field name='autor' type='text' placeholder='Autor' />
+                        </div> */}
                         <div className="row">
                             <div>
                                 <Btn

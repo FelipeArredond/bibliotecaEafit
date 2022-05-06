@@ -49,24 +49,11 @@ body {
 }
 
 
-.btn_ingresar[type="submit"] {
+.btn {
 	display: block;
     margin: 15px 0 0 74%;
-	background: #0085FF;
-	font-family: 'Open Sans', sans-serif;
-	border: none;
-	cursor: pointer;
-	width: 20%;
-	padding: 10px;
-	border-radius: 5px;
-	color: floralwhite;
-	font-size: 16px;
-	transition: .3s ease all;
 }
 
-.btn_ingresar[type="submit"]:hover {
-	background: #0051ff;
-}
 
 .down a{
 	display: block;
