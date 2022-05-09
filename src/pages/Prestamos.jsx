@@ -14,7 +14,6 @@ export default function Prestamos(){
     
 
     let handleChange = e =>{
-        console.log(e.target.value)
         setSearch({
             titulo: e.target.value
         });
@@ -25,7 +24,6 @@ export default function Prestamos(){
     const loadBook = async () => {
         const response = await fetch(`http://localhost:4000/libros/${search.titulo}`)
         const data = await response.json()
-        console.log(data)
         setBook(data)
     }
 
@@ -37,7 +35,14 @@ export default function Prestamos(){
     let handleSubmit = (event) => {
         event.preventDefault();
         loadBook();
-        console.log(book)
+    }
+
+    const lendButton = () => {
+        if(book.length > 1  || book.length === 0){
+            
+        }else{
+            return <Button type="primary">Prestar</Button>
+        }
     }
 
     return(
@@ -56,6 +61,7 @@ export default function Prestamos(){
                 </FormGroup>    
             </Form>
             <Libro book={book}/>
+            {lendButton()}
         </div>
     )
 }

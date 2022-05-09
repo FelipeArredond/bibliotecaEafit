@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-const user = {loggedIn: true}
+const user = {loggedIn: false}
 
 export const login = () => {
     user.loggedIn = true;

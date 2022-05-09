@@ -32,6 +32,7 @@ export default function InicioSesion() {
         for(var i = 0; i < students.length; i++){
             if(name === students[i].nombre && ci === students[i].ci){
                 login();
+                <Navigate to={'/prestamos'}></Navigate>
             }
         }
     }
@@ -50,7 +51,7 @@ export default function InicioSesion() {
                 <div>
                     <input type='text' id='contraseña' name='contraseña' placeholder='Documento de identidad' onChange={handleInputChangeCi}></input>
                 </div>
-                <button className='btn_ingresar' type='submit' onClick={credentialsValidation} ><Link to={'/libros'}>Enviar</Link></button>
+                <button className='btn_ingresar' type='submit' onClick={credentialsValidation} ><Link to={'/prestamos'} >Enviar</Link></button>
                 <div className='down'>
                     <NavLink to='#' className='go_registrarse'><span>¿No tienes cuenta? Registrate</span></NavLink>
                     <Link to='#' className=''><span>Recuperar contraseña</span></Link>
