@@ -1,5 +1,6 @@
 import { Table } from "react-bootstrap"
 import { useEffect, useState } from "react"
+import Menu from "../components/Menu"
 
 export default function Libros(props){
      
@@ -42,9 +43,7 @@ export default function Libros(props){
 
     return(
         <div>
-            <div>
-                <h3>Libros</h3>
-            </div>
+            <Menu></Menu>
             <Table
                 bordered
                 hover
