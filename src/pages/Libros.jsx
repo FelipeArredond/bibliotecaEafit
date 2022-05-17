@@ -11,7 +11,6 @@ export default function Libros(props){
     const loadBook = async () => {
         const response = await fetch(`http://localhost:4000/libros/${num}`)
         const data = await response.json()
-        console.log(data)
         setBooks(data)
     }
 

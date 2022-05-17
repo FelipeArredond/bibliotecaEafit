@@ -2,8 +2,12 @@ import { Form, FormGroup, FormLabel, FormControl ,Button} from "react-bootstrap"
 import { useState, useEffect } from "react"
 import Menu from "../components/Menu"
 import Libro from "./Libro";
+import { useLocation } from "react-router-dom";
+import { PrestamoBoton } from "./PrestamoButton";
 
-export default function Prestamos(){
+export default function Prestamos(props){
+
+    const username = props.username
 
     const [search, setSearch] = useState({
         titulo: ''
@@ -27,11 +31,14 @@ export default function Prestamos(){
         setBook(data)
     }
 
+    const location = useLocation()
+
     useEffect(() =>{
         loadBook()
+        console.log(location)
     }, [])
 
-
+    
     let handleSubmit = (event) => {
         event.preventDefault();
         loadBook();
@@ -41,13 +48,14 @@ export default function Prestamos(){
         if(book.length > 1  || book.length === 0){
             
         }else{
-            return <Button type="primary">Prestar</Button>
+            return <PrestamoBoton/>
         }
     }
 
     return(
         <div>
             <Menu></Menu>
+            <h3>Bienvenido de nuevo  {location.state.username} {location.state.idLSector}!</h3>
             <h3>Prestamos</h3>
             <Form onSubmit={handleSubmit}>
             <FormGroup className="mb-3" controlId="formBasicEmail">
