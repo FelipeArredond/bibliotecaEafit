@@ -8,16 +8,16 @@ export default function InicioSesion() {
     const [ci, setCi] = useState('');
     const [student, setStudent] = useState([]);
 
-    const fetchInfoStudent =  async () => {
+    const fetchInfoStudent = async () => {
         const response = await fetch(`http://localhost:4000/estudiante/${ci}`);
         const studentData = await response.json();
-        setStudent(studentData);  
+        setStudent(studentData);
         console.log(student)
     }
 
     useEffect(() => {
         fetchInfoStudent()
-    },[])
+    }, [])
 
     const handleInputChangeName = e => {
         setName(e.target.value)
@@ -28,10 +28,10 @@ export default function InicioSesion() {
     }
 
 
-    const credentialsValidation = () =>{
+    const credentialsValidation = () => {
         fetchInfoStudent()
-        for(var i = 0; i < student.length; i++){
-            if(name === student[i].nombre && ci === student[i].ci){
+        for (var i = 0; i < student.length; i++) {
+            if (name === student[i].nombre && ci === student[i].ci) {
                 login();
                 //<Navigate to={'/prestamos'}></Navigate>
             }
@@ -41,7 +41,7 @@ export default function InicioSesion() {
     const handleSubmit = e => {
         e.preventDefault()
     }
- 
+
     return (
         <div className='body'>
             <form className='form_sesion' onSubmit={handleSubmit}>
@@ -54,7 +54,7 @@ export default function InicioSesion() {
                 </div>
                 <button className='btn_ingresar' type='submit' onClick={credentialsValidation} >test{/*<Link to={'/prestamos'} state={{username:name, id_lector:student[[0].id_lector]}} >Enviar</Link>*/}</button>
                 <div className='down'>
-                    <NavLink to='#' className='go_registrarse'><span>¿No tienes cuenta? Registrate</span></NavLink>
+                    <NavLink to='/registrarse' className='go_registrarse'><span>¿No tienes cuenta? Registrate</span></NavLink>
                     <Link to='#' className=''><span>Recuperar contraseña</span></Link>
                 </div>
             </form>

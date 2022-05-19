@@ -14,11 +14,12 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/log' element={<Inicio/>}/>
+        <Route path='/log' element={<Inicio />} />
+        {externalRoutes.map(ruta => <Route key={ruta.path} path={ruta.path} element={<ruta.componente />} />)}
         <Route element={<ProtectedRoutes></ProtectedRoutes>}>
-          <Route path='/libros' element={<Libros></Libros>}/>
-          <Route path='/prestamos' element={<Prestamos/>} />
-          <Route path='/estudiante' element={<Student/>} />
+          <Route path='/libros' element={<Libros></Libros>} />
+          <Route path='/prestamos' element={<Prestamos />} />
+          <Route path='/estudiante' element={<Student />} />
         </Route>
       </Routes>
     </div >
