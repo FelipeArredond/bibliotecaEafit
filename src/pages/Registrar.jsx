@@ -47,7 +47,7 @@ export default function () {
                     }
 
                     if (valores.ci === '') {
-                        errores.ci = 'Ingresa un cio'
+                        errores.ci = 'Ingresa un documento'
                     } else if (!/^[0-9.]{7,20}$/.test(valores.ci)) {
                         errores.ci = 'undefined'
                     }
@@ -83,7 +83,7 @@ export default function () {
                     ({ errors }) => (
                         <Form className='form_register'>
                             <div>
-                                <label>Id</label>
+                                <label>Identificador    </label>
                                 <Field type='text' name='id_lector' placeholder='id_lector'></Field>
                                 <ErrorMessage name='id_lector' component={() => (<div className='error'>{errors.id_lector}</div>)}></ErrorMessage>
                             </div>

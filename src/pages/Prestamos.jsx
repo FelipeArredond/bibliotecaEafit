@@ -1,75 +1,67 @@
-import { Form, FormGroup, FormLabel, FormControl ,Button} from "react-bootstrap"
-import { useState, useEffect } from "react"
-import Menu from "../components/Menu"
-import Libro from "./Libro";
-import { useLocation } from "react-router-dom";
-import { PrestamoBoton } from "./PrestamoButton";
+import { useEffect, useState } from "react";
+import ModelMody from '../components/models/modelsPrestamo/ModelModyPrest';
+import Menu from "../components/Menu";
 
-export default function Prestamos(props){
+export default function Prestamos() {
 
-    const username = props.username
+    const [statePrestamos, setStatePrestamos] = useState([])
 
-    const [search, setSearch] = useState({
-        titulo: ''
-    });
-
-    const [book, setBook] = useState([])
-
-    
-
-    let handleChange = e =>{
-        setSearch({
-            titulo: e.target.value
-        });
+    const loadPrestamos = async () => {
+        const respuesta = await fetch('http://localhost:4000/prestamo')
+        const data = await respuesta.json()
+        setStatePrestamos(data)
     }
 
-    var prueba = 'Martin Fierro'
-
-    const loadBook = async () => {
-        const response = await fetch(`http://localhost:4000/libros/${search.titulo}`)
-        const data = await response.json()
-        setBook(data)
-    }
-
-    const location = useLocation()
-
-    useEffect(() =>{
-        loadBook()
-        console.log(location)
+    useEffect(() => {
+        loadPrestamos()
     }, [])
 
-    
-    let handleSubmit = (event) => {
-        event.preventDefault();
-        loadBook();
-    }
-
-    const lendButton = () => {
-        if(book.length > 1  || book.length === 0){
-            
-        }else{
-            return <PrestamoBoton/>
-        }
-    }
-
-    return(
+    return (
         <div>
-            <Menu></Menu>
-            <h3>Bienvenido de nuevo  {location.state.username} {location.state.idLSector}!</h3>
-            <h3>Prestamos</h3>
-            <Form onSubmit={handleSubmit}>
-            <FormGroup className="mb-3" controlId="formBasicEmail">
-                <FormLabel>Ingresa el ID del libro que deseas prestar</FormLabel>
-                <FormControl name="titulo" onChange={handleChange} placeholder="Nombre Libro" />
-                </FormGroup>
-                <FormGroup>    
-                <Button variant="primary" type="submit">
-                    Buscar
-                </Button>
-                </FormGroup>    
-            </Form>
-            <Libro book={book}/>
-            {lendButton()}
+            <Menu />
+            <h2>Prestamos</h2>
+            <div>
+                <table className='table table-bordered'>
+                    <thead>
+                        <tr>
+                            <th scope="col">Estudiante</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Fecha prestamo</th>
+                            <th scope="col">Fecha devolucion</th>
+                            <th scope="col">Devuelto</th>
+                            <th scope="col">Multa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {statePrestamos.map(prestamo =>
+                            <tr key={prestamo.id_prestamo}>
+                                <td>{prestamo.nombre}</td>
+                                <td>{prestamo.titulo}</td>
+                                <td>{prestamo.fecha_prestamo}</td>
+                                <td>{prestamo.fecha_devolucion}</td>
+                                <td>{prestamo.devuelto}</td>
+                                <td>{prestamo.multa}</td>
+                                <td>{<ModelMody modelo={prestamo}
+                                    existingPrest={statePrestamos}
+                                    onChange={(prestamo) => setStatePrestamos(prestamo)} />}</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+
+                <table className="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Total Multas</th>
+                            <td className="col-md-2">
+                                {
+                                    statePrestamos.map(item => item.multa).reduce((prev, curr) => prev + curr, 0)
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

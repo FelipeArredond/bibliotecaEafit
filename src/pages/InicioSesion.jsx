@@ -33,7 +33,7 @@ export default function InicioSesion() {
         for (var i = 0; i < student.length; i++) {
             if (name === student[i].nombre && ci === student[i].ci) {
                 login();
-                //<Navigate to={'/prestamos'}></Navigate>
+                <Navigate to={'/prestamos'}></Navigate>
             }
         }
     }
@@ -47,12 +47,12 @@ export default function InicioSesion() {
             <form className='form_sesion' onSubmit={handleSubmit}>
                 <h3>Inicio de sesion</h3>
                 <div>
-                    <input type='text' name='name' placeholder='Nombre' onChange={handleInputChangeName}></input>
+                    <input type='text' name='name' placeholder='Nombre' onChange={handleInputChangeName} defaultValue='Luis'></input>
                 </div>
                 <div>
-                    <input type='text' id='contraseña' name='contraseña' placeholder='Documento de identidad' onChange={handleInputChangeCi}></input>
+                    <input type='text' id='contraseña' name='contraseña' placeholder='Documento de identidad' onChange={handleInputChangeCi} defaultValue='CC-156'></input>
                 </div>
-                <button className='btn_ingresar' type='submit' onClick={credentialsValidation} >test{/*<Link to={'/prestamos'} state={{username:name, id_lector:student[[0].id_lector]}} >Enviar</Link>*/}</button>
+                <button className='btn_ingresar' type='submit' onClick={credentialsValidation}>{<Link to={'/prestamos'} state={{username:name, id_lector:student[[0].id_lector]}} >Enviar</Link>}</button>
                 <div className='down'>
                     <NavLink to='/registrarse' className='go_registrarse'><span>¿No tienes cuenta? Registrate</span></NavLink>
                     <Link to='#' className=''><span>Recuperar contraseña</span></Link>

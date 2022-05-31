@@ -25,8 +25,11 @@ export default function Menu() {
                         <li className="nav-item">
                             <Link to="/prestamos" className="nav-link">Prestamos</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to="/prestar" className="nav-link">Prestar</Link>
+                        </li>
                         <li className="sesion_close nav-item">
-                            <Link to="/inicioSesion" className="nav-link">Cerrar sesion</Link>
+                            <Link to="/" className="nav-link">Cerrar sesion</Link>
                         </li>
                     </ul>
                 </div>
