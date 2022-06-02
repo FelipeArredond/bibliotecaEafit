@@ -1,4 +1,4 @@
-import '../css/globalModal.css'
+import './css/globalModal.css'
 
 export default function GlobalModal(props) {
     return (
