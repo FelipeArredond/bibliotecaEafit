@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+First for all, to initialize the project you need run the command
+
+> npm install.
+
+Then:
+
 ## Available Scripts
 
 In the project directory, you can run:
