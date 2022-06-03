@@ -1,10 +1,10 @@
-import './css/libros.css'
 import { Table } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import Menu from "../components/Menu"
+import './css/libros.css'
 
-export default function Libros(props) {
-
+export default function Libros(props){
+     
     const [books, setBooks] = useState([])
 
     var num = ''
@@ -15,12 +15,12 @@ export default function Libros(props) {
         setBooks(data)
     }
 
-    useEffect(() => {
+    useEffect(() =>{
         loadBook()
     }, [])
-
-    const booksMapAll = books.map(book => {
-        return (
+    
+    const booksMapAll =  books.map(book => {
+        return(
             <tr>
                 <th scope="row">
                     {book.idlibro}
@@ -41,109 +41,37 @@ export default function Libros(props) {
         );
     })
 
-    return (
+    return(
         <div>
             <Menu></Menu>
-            <div class="cont-page">
-            <Table 
+            <Table
                 bordered
                 hover
                 responsive
-            >
+                >
                 <thead>
-                    <tr class="headers-table">
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Titulo
-                        </th>
-                        <th>
-                            Autor
-                        </th>
-                        <th>
-                            Editorial
-                        </th>
-                        <th>
-                            Area
-                        </th>
-                    </tr>
                     <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
-                    </tr>
-                    <tr>
-                        <td>Libro1</td>
-                        <td>Libro2</td>
-                        <td>Libro3</td>
-                        <td>Libro4</td>
-                        <td>Libro5</td>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Titulo
+                    </th>
+                    <th>
+                        Autor
+                    </th>
+                    <th>
+                        Editorial
+                    </th>
+                    <th>
+                        Area
+                    </th>
                     </tr>
                 </thead>
                 <tbody>
                     {booksMapAll}
                 </tbody>
             </Table>
-            </div>
         </div>
     )
 }
