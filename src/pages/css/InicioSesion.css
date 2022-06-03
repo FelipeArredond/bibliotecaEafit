@@ -62,18 +62,22 @@ body {
 	transition: .3s ease all;
 }
 
-.btn_ingresar[type="submit"] a{
+.btn_ingresar[type="submit"]{
 	color: #ffffff;
 	text-decoration: none;
 }
 
 .btn_ingresar[type="submit"]:hover {
-	background: #ffffff;
-	border: 1px solid #00000029;
+	background: #0051ff;
+/* 	border: 1px solid #00000029; */
+	color: #ffffff;
+/* 	text-decoration: none;
+	border: 1px solid #0051ff; */
+	transition: all 0.5s ease-in-out;
 }
 
 .btn_ingresar[type="submit"]:hover a{
-	color: #0051ff;
+	color: #ffffff;
 }
 
 .adjust-style{
@@ -91,11 +95,11 @@ body {
 }
 
 .down p, .down a{
-	display: inline-table;
 }
 
 .down a{
 	padding-top: 5px;
+	text-decoration: none;
 }
 
 .down p{
@@ -109,11 +113,10 @@ body {
 
 .down a:hover{
 	color: #0051ff;
+	text-decoration: none
 }
 
 .down a:active{
 	color: #0051ff;
 	text-decoration: underline;
 }
-
-

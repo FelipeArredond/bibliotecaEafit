@@ -1,6 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React, { useState } from 'react'
-
 import './css/regitro.css'
 
 export default function () {
@@ -20,7 +19,7 @@ export default function () {
 
     return (
         <div className='body'>
-            <h1 className='register_title'>Registrarse</h1>
+            {/* <h1 className='register_title'>Registrarse</h1> */}
 
             <Formik
                 initialValues={{
@@ -103,7 +102,7 @@ export default function () {
                             <div>
                                 <label>Documento</label>
                                 <Field
-                                    type='text' name='ci' placeholder='Example: CC-1234567789.'></Field>
+                                    type='text' name='ci' placeholder='CC-1234567789.'></Field>
                                 <ErrorMessage name='ci' component={() => (
                                     <div className='error'>{errors.ci}</div>
                                 )}></ErrorMessage>
@@ -112,7 +111,7 @@ export default function () {
                             <div>
                                 <label>Carrera</label>
                                 <Field
-                                    type='text' name='carrera' placeholder='Example: Ingenieria de sistemas'></Field>
+                                    type='text' name='carrera' placeholder='Ingenieria de sistemas'></Field>
                                 <ErrorMessage name='carrera' component={() => (
                                     <div className='error'>{errors.carrera}</div>
                                 )}></ErrorMessage>

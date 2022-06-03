@@ -9,23 +9,25 @@ h1{
 
 .register_title{
 	text-align: center;
-	padding-top: 7%;
+	margin: 0;
+	padding: 22px 0;
+	font-weight: 500;
 }
 
 .contenedor {
-	min-height: 100vh;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
+	max-width: 808px;
 }
 
 .form_register {
-	margin-right: 29%;
-	margin-left: 30%;
-	background: rgb(240, 240, 240);
+	background: rgb(0,0,0,0.0);
 	border-radius: 5px;
 	padding: 25px;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	width: 40%;
+	margin: 40px auto;
 }
 
 .form_register div {
@@ -45,13 +47,14 @@ h1{
 .form_register textarea,
 .form_register select {
 	font-family: 'Open Sans', sans-serif;
-	width: 96%;
+	width: 100%;
 	border-radius: 5px;
 	border: 2px solid #e2e2e2;
 	font-size: 18px;
 	padding: 10px;
 	margin-bottom: 5px;
 	color: #1f1f1f;
+	display: block;
 }
 
 .form_register input:focus,
