@@ -1,81 +1,149 @@
-import { useEffect, useState } from "react"
-
 import './css/libros.css'
+import { Table } from "react-bootstrap"
+import { useEffect, useState } from "react"
+import Menu from "../components/Menu"
 
-import ModelAgg from "../components/Models/ModelAgg"
-import ModelDelete from "../components/Models/ModelDelete"
-import ModelMody from "../components/Models/ModelMody"
+export default function Libros(props) {
 
-export default function Libros() {
+    const [books, setBooks] = useState([])
 
-    const [stateLibro, setStateLibro] = useState([])
+    var num = ''
 
-    const loadLibros = async () => {
-        const respuesta = await fetch('http://localhost:3032/libro')
-        const data = await respuesta.json()
-        setStateLibro(data)
-        console.log(data)
+    const loadBook = async () => {
+        const response = await fetch(`http://localhost:4000/libros/${num}`)
+        const data = await response.json()
+        setBooks(data)
     }
 
     useEffect(() => {
-        loadLibros()
+        loadBook()
     }, [])
 
-    /**Destructuring */
+    const booksMapAll = books.map(book => {
+        return (
+            <tr>
+                <th scope="row">
+                    {book.idlibro}
+                </th>
+                <td>
+                    {book.titulolibro}
+                </td>
+                <td>
+                    {book.nombreautor}
+                </td>
+                <td>
+                    {book.editoriallibro}
+                </td>
+                <td>
+                    {book.arealibro}
+                </td>
+            </tr>
+        );
+    })
+
     return (
         <div>
-            <h2>Inventario</h2>
-
-            <ModelAgg className='btn btn-success' existingLib={stateLibro} onChange={(libro) => setStateLibro(libro)} />
-
-            <div id="table">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Editorial</th>
-                            <th scope="col">Area</th>
-                            <th scope="col">Autor</th>
-                            <th scope="col">Nacionalidad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {stateLibro.map(libro =>
-                            <tr key={libro.id_libro}>
-                                <td>{libro.id_libro}</td>
-                                <td>{libro.titulo}</td>
-                                <td>{libro.editorial}</td>
-                                <td>{libro.area}</td>
-                                <td>{libro.nombre}</td>
-                                <td>{libro.nacionalidad}</td>
-                                <td><ModelMody className='btn btn-primary'
-                                    modelo={libro}
-                                    existingLib={stateLibro}
-                                    onChange={(libro) => setStateLibro(libro)}
-                                /></td>
-                                <td><ModelDelete className='btn btn-danger'
-                                    modelo={libro}
-                                    existingLib={stateLibro}
-                                    onChange={(libro) => setStateLibro(libro)} />
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+            <Menu></Menu>
+            <div class="cont-page">
+            <Table 
+                bordered
+                hover
+                responsive
+            >
+                <thead>
+                    <tr class="headers-table">
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Titulo
+                        </th>
+                        <th>
+                            Autor
+                        </th>
+                        <th>
+                            Editorial
+                        </th>
+                        <th>
+                            Area
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                    <tr>
+                        <td>Libro1</td>
+                        <td>Libro2</td>
+                        <td>Libro3</td>
+                        <td>Libro4</td>
+                        <td>Libro5</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {booksMapAll}
+                </tbody>
+            </Table>
             </div>
-
-
-
-
-
         </div>
-
     )
 }
-
-
-
-
-
-

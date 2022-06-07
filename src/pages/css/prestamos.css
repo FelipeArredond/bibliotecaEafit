@@ -1,0 +1,14 @@
+.cont-page{
+    width: 88%;
+    margin: auto;
+    margin-top: 22px;
+    max-width: 1600px;
+}
+
+.title{
+    margin-top: 22px;
+}
+
+.table-prestamos{
+    width: 100% !important;
+}
