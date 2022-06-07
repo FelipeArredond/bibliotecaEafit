@@ -1,10 +1,9 @@
 import { Form, FormGroup, FormLabel, FormControl, Button } from "react-bootstrap"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Menu from "../components/Menu"
 import Libro from "./Libro";
-import { useLocation } from "react-router-dom";
-import { PrestamoBoton } from "./PrestamoButton";
 import './css/prestar.css'
+import { authContext } from "../context/authContext";
 
 export default function Prestar(props) {
 
@@ -13,6 +12,8 @@ export default function Prestar(props) {
     const [search, setSearch] = useState({
         titulo: ''
     });
+
+    const {userData} = useContext(authContext)
 
     const [book, setBook] = useState([])
 
@@ -24,19 +25,37 @@ export default function Prestar(props) {
         });
     }
 
-    var prueba = 'Martin Fierro'
-
     const loadBook = async () => {
         const response = await fetch(`http://localhost:4000/libros/${search.titulo}`)
         const data = await response.json()
         setBook(data)
     }
 
-    const location = useLocation()
+    const lendBook = () =>{
+        let headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Content-Type": "application/json"
+           }
+           
+           let bodyContent = JSON.stringify({
+               "id_lector": userData.id,
+               "id_libro": book.idlibro
+           });
+           
+           fetch("http://localhost:4000/prestamo/", { 
+             method: "POST",
+             body: bodyContent,
+             headers: headersList
+           }).then(function(response) {
+             return response.text();
+           }).then(function(data) {
+             console.log(data);
+           })
+    }
 
     useEffect(() => {
         loadBook()
-        console.log(location)
     }, [])
 
 
@@ -49,15 +68,13 @@ export default function Prestar(props) {
         if (book.length > 1 || book.length === 0) {
 
         } else {
-            return <PrestamoBoton />
+            return <Button variant="primary" type="submit" onClick={lendBook} >Prestar</Button>
         }
     }
 
     return (
         <div>
             <Menu />
-            {/* <h3>Bienvenido de nuevo {location.state.username}{location.state.idLSector}!</h3> */}
-            {/* <h3>Prestamos</h3> */}
             <div class="cont-page">
                 <Form onSubmit={handleSubmit}>
                     <FormGroup className="mb-3" controlId="formBasicEmail">

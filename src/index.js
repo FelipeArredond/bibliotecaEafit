@@ -4,12 +4,15 @@ import * as ReactDOMClient from 'react-dom/client';
 import './index.css';
 import App from './App';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import Auth from './context/authContext';
 
 
 const rootElement = document.getElementById('root')
 const root = ReactDOMClient.createRoot(rootElement);
 root.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>    
+    <Auth>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>    
+    </Auth>
 );

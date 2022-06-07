@@ -49,22 +49,6 @@ export default function Prestamos() {
                                         onChange={(prestamo) => setStatePrestamos(prestamo)} />}</td>
                                 </tr>
                             )}
-                            <tr>
-                                <td>Estudiante1</td>
-                                <td>Título1</td>
-                                <td>18/02/08</td>
-                                <td>08/02/18</td>
-                                <td>SI</td>
-                                <td>0$</td>
-                            </tr>
-                            <tr>
-                                <td>Estudiante2</td>
-                                <td>Título2</td>
-                                <td>88/04/28</td>
-                                <td>28/04/88</td>
-                                <td>NO</td>
-                                <td>140$</td>
-                            </tr>
                         </tbody>
                     </table>
 
