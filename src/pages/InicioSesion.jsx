@@ -1,44 +1,23 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link, Navigate, NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Navigate, NavLink, Outlet } from 'react-router-dom';
 import { login } from './protectedRoutes';
 import './css/InicioSesion.css'
-import { AuthContext } from '../context/AuthContext';
 
 export default function InicioSesion() {
     const [name, setName] = useState('');
     const [ci, setCi] = useState('');
-    const [student, setStudent] = useState({
-        carrera: 0,
-        ci: 0,
-        direccion: '',
-        edad: 0,
-        id_lector: 0,
-        nombre: ''
-    });
+    const [student, setStudent] = useState([]);
 
-    const navigate = useNavigate()
-    const {userData, setUserData} = useContext(AuthContext)
-
-
-    const fetchInfoStudent = async (event) => {
-        event.preventDefault()
+    const fetchInfoStudent = async () => {
         const response = await fetch(`http://localhost:4000/estudiante/${ci}`);
         const studentData = await response.json();
-        setStudent({
-            carrera: studentData[0].carrera,
-            ci: studentData[0].ci,
-            direccion: studentData[0].direccion,
-            edad: studentData[0].edad,
-            id_lector: studentData[0].id_lector,
-            nombre: studentData[0].nombre
-        });
-        setUserData({
-            name: studentData[0].nombre,
-            id_lector: studentData[0].id_lector
-        })
-        login();
-        navigate('/prestar')
+        setStudent(studentData);
+        console.log(student)
     }
+
+    useEffect(() => {
+        fetchInfoStudent()
+    }, [])
 
     const handleInputChangeName = e => {
         setName(e.target.value)
@@ -46,6 +25,17 @@ export default function InicioSesion() {
 
     const handleInputChangeCi = e => {
         setCi(e.target.value)
+    }
+
+
+    const credentialsValidation = () => {
+        fetchInfoStudent()
+        for (var i = 0; i < student.length; i++) {
+            if (name === student[i].nombre && ci === student[i].ci) {
+                login();
+                <Navigate to={'/prestamos'}></Navigate>
+            }
+        }
     }
 
     const handleSubmit = e => {
@@ -59,13 +49,13 @@ export default function InicioSesion() {
                 <div>
                     <input type='text' name='name' placeholder='Nombre' onChange={handleInputChangeName} defaultValue='Luis'></input>
                 </div>
-                <div>
+                <div class="adjust-style">
                     <input type='text' id='contraseña' name='contraseña' placeholder='Documento de identidad' onChange={handleInputChangeCi} defaultValue='CC-156'></input>
                 </div>
-                <button className='btn_ingresar' type='submit' onClick={fetchInfoStudent}>Enviar</button>
+                <Link to='#' className='recover-password'><span>Recuperar contraseña</span></Link>
                 <div className='down'>
-                    <NavLink to='/registrarse' className='go_registrarse'><span>¿No tienes cuenta? Registrate</span></NavLink>
-                    <Link to='#' className=''><span>Recuperar contraseña</span></Link>
+                {<Link to={'/prestamos'} state={{username:name, id_lector:student[[0].id_lector]}} ><button className='btn_ingresar' type='submit' onClick={credentialsValidation}>Enviar</button></Link>}
+                    <p>¿No tienes cuenta? <NavLink to='/registrarse' className='go_registrarse'><span> Registrate</span></NavLink></p>
                 </div>
             </form>
 
