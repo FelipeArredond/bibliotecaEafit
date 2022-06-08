@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from 'react';
-import { Link, Navigate, NavLink, Outlet } from 'react-router-dom';
+import { Link, Navigate, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { login } from './protectedRoutes';
 import './css/InicioSesion.css'
 import { authContext } from '../context/authContext';
@@ -10,6 +10,8 @@ export default function InicioSesion() {
     const [student, setStudent] = useState([]);
 
     const {setUserData} = useContext(authContext)
+
+    const navigate = useNavigate()
 
     const fetchInfoStudent = async () => {
         const response = await fetch(`http://localhost:4000/estudiante/${ci}`);
@@ -40,7 +42,7 @@ export default function InicioSesion() {
                     admin: false
                 })
                 login();
-                <Navigate to={'/prestamos'}></Navigate>
+                navigate('/inicio')
             }
         }
     }
@@ -61,7 +63,7 @@ export default function InicioSesion() {
                 </div>
                 <Link to='#' className='recover-password'><span>Recuperar contraseña</span></Link>
                 <div className='down'>
-                {<Link to={'/prestamos'} state={{username:name, id_lector:student[[0].id_lector]}} ><button className='btn_ingresar' type='submit' onClick={credentialsValidation}>Enviar</button></Link>}
+                <button className='btn_ingresar' type='submit' onClick={credentialsValidation}>Enviar</button>
                     <p>¿No tienes cuenta? <NavLink to='/registrarse' className='go_registrarse'><span> Registrate</span></NavLink></p>
                 </div>
             </form>

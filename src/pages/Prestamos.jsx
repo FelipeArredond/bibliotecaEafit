@@ -55,9 +55,9 @@ export default function Prestamos() {
             <td>{prestamo.titulo}</td>
             <td>{prestamo.fecha_prestamo}</td>
             <td>{prestamo.fecha_devolucion}</td>
-            <td>{prestamo.devuelto}</td>
+            <td>{prestamo.devuelto==1?<a>Entregado</a>:<a>No entregado</a>}</td>
             <td>{prestamo.multa}</td>
-            {!userData.admin&&<td><ButtonGiveBack idPrestamo={prestamo.id_prestamo}/></td>}
+            {!userData.admin&&<td><ButtonGiveBack idPrestamo={prestamo.id_prestamo} fechaPrestamo={prestamo.fecha_prestamo}/></td>}
             {userData.admin&&<td>{<ModelMody modelo={prestamo}
                 existingPrest={statePrestamos}
                 onClick={console.log('test')}
