@@ -15,7 +15,6 @@ export default function InicioSesion() {
         const response = await fetch(`http://localhost:4000/estudiante/${ci}`);
         const studentData = await response.json();
         setStudent(studentData);
-        console.log(student)
     }
 
     useEffect(() => {
