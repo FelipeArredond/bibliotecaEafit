@@ -47,9 +47,7 @@ export default function () {
 
                     if (valores.ci === '') {
                         errores.ci = 'Ingresa un documento'
-                    } else if (!/^[0-9.]{7,20}$/.test(valores.ci)) {
-                        errores.ci = 'undefined'
-                    }
+                    } 
 
                     if (valores.carrera === '') {
                         errores.carrera = 'Ingresa una carrera'
@@ -59,9 +57,7 @@ export default function () {
 
                     if (valores.direccion === '') {
                         errores.direccion = 'Ingresa un direccion'
-                    } else if (!/^[a-zA-ZÀ-ÿ\s]{8,99}/.test(valores.direccion)) {
-                        errores.direccion = 'Direccion indefinida'
-                    }
+                    } 
 
                     return errores
 
