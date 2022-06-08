@@ -4,6 +4,7 @@ import Menu from "../components/Menu";
 import './css/prestamos.css'
 import { authContext } from "../context/authContext";
 import { Button } from "react-bootstrap";
+import ButtonGiveBack from "../components/ButtonGiveBack";
 
 export default function Prestamos() {
 
@@ -56,9 +57,11 @@ export default function Prestamos() {
             <td>{prestamo.fecha_devolucion}</td>
             <td>{prestamo.devuelto}</td>
             <td>{prestamo.multa}</td>
-            <td>{<ModelMody modelo={prestamo}
+            {!userData.admin&&<td><ButtonGiveBack idPrestamo={prestamo.id_prestamo}/></td>}
+            {userData.admin&&<td>{<ModelMody modelo={prestamo}
                 existingPrest={statePrestamos}
-                onChange={(prestamo) => setStatePrestamos(prestamo)} />}</td>
+                onClick={console.log('test')}
+                onChange={(prestamo) => setStatePrestamos(prestamo)} />}</td>}
         </tr>
     )
 
@@ -95,7 +98,7 @@ export default function Prestamos() {
                                 <th>Total Multas</th>
                                 <td className="col-md-2">
                                     {
-                                        //statePrestamos.map(item => item.multa).reduce((prev, curr) => prev + curr, 0)
+                                        statePrestamos.map(item => item.multa).reduce((prev, curr) => prev + curr, 0)
                                     }
                                 </td>
                             </tr>

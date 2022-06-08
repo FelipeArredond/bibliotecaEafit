@@ -4,10 +4,11 @@ import Menu from "../components/Menu"
 import Libro from "./Libro";
 import './css/prestar.css'
 import { authContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Prestar(props) {
 
-    const username = props.username
+    const navigate = useNavigate()
 
     const [search, setSearch] = useState({
         titulo: ''
@@ -50,7 +51,8 @@ export default function Prestar(props) {
            }).then(function(response) {
              return response.text();
            }).then(function(data) {
-             console.log(data);
+             alert('Se ha prestado el libro correctamente')
+             navigate('/prestamos')
            })
     }
 

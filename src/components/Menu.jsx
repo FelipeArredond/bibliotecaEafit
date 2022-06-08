@@ -1,9 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
 import logo from './img/logo1.png'
 import './css/Menu.css'
+import { useContext } from "react";
+import { authContext } from "../context/authContext";
 
 
 export default function Menu() {
+
+    const { userData } = useContext(authContext)
+
     return (
         <div class="bckg-navbar">
             <div class="cont-navbar">
@@ -21,9 +26,9 @@ export default function Menu() {
                             <li className="nav-item">
                                 <Link to="/inicio">Inicio</Link>
                             </li>
-                            <li className="nav-item">
+                            {userData.admin&&<li className="nav-item">
                                 <Link to="/libros">Libros</Link>
-                            </li>
+                            </li>}
                             <li className="nav-item">
                                 <Link to="/prestamos">Préstamos</Link>
                             </li>
